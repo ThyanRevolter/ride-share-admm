@@ -52,6 +52,9 @@ T, D = createDistanceMatrix(locations)
 T
 D
 S = D./T
+S[findall(x->x==NaN, S)] .= 0 
+diag(S) .= 0
+
 
 
 
@@ -76,23 +79,23 @@ end
 JSON.print(data)
 
 
-# URL for Speedlimit 
+# # URL for Speedlimit 
 
-function getSpeedLimit(origin,destination)
-    api_key = "AIzaSyCH6v-2T8u7wKKwluiX4FWUyOxcpvmTyD4"
-    directionURL = "https://roads.googleapis.com/v1/speedLimits?path="*origin*","*destination*"&key="*api_key
-    r = HTTP.request("GET", directionURL)
-    body_string = (String(r.body))
-    parsed_data = JSON.parse(body_string)
-    return parsed_data
-end
+# function getSpeedLimit(origin,destination)
+#     api_key = "AIzaSyCafK13zizgMdihUc_I_dsjlVgeWkI9TrA"
+#     directionURL = "https://roads.googleapis.com/v1/speedLimits?path="*origin*"|"*destination*"&key="*api_key
+#     r = HTTP.request("GET", directionURL)
+#     body_string = (String(r.body))
+#     parsed_data = JSON.parse(body_string)
+#     return parsed_data
+# end
 
-speed_limit_data = getSpeedLimit(p1,p2)
+# speed_limit_data = getSpeedLimit(p1,p2)
 
-# URL for Direction
-directionURL = "https://maps.googleapis.com/maps/api/directions/json?origin=Toronto&destination=Montreal&key="
+# # URL for Direction
+# directionURL = "https://maps.googleapis.com/maps/api/directions/json?origin=Toronto&destination=Montreal&key="
 
-# URL for snap to roads
-snapRoad = "https://roads.googleapis.com/v1/snapToRoads?parameters&key=YOUR_API_KEY"
+# # URL for snap to roads
+# snapRoad = "https://roads.googleapis.com/v1/snapToRoads?parameters&key=YOUR_API_KEY"
 
-speedLimit = "https://roads.googleapis.com/v1/speedLimits?path="
+# speedLimit = "https://roads.googleapis.com/v1/speedLimits?path="
