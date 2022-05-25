@@ -1,9 +1,10 @@
 using HTTP, JSON
 
-origin = "37.4243691%2C-122.1597759"
-destination = "37.4258662%2C-122.1609591"
+origin = "37.4243691,-122.1597759"
+destination = "37.4258662,-122.1609591"
 
 # Input should be latitude and longitude
+# Return Time, Distance
 function findTimeDistance(origin,destination)
     api_key = "AIzaSyCH6v-2T8u7wKKwluiX4FWUyOxcpvmTyD4"
     url = "https://maps.googleapis.com/maps/api/distancematrix/json?"*"origins="*origin*"&destinations=" *destination *"&key="*api_key
