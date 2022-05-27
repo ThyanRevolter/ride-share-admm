@@ -47,7 +47,6 @@ locations = [str(X[0][i])+","+str(X[1][i]) for i in range(n)]
 # locations = [c, p1, p2, p3, p4]
 
 T, D = distance_matrix_API.createDistanceMatrix(locations)
-D[:,0] = 0
 print(D)
 print(T)
 
