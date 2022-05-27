@@ -21,3 +21,4 @@ def createDistanceMatrix(locations):
             if i!=j and j != 0:               
                 T[i,j], D[i,j] = get_distance(locations[i], locations[j])
     return T, D
+
