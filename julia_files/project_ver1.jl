@@ -49,12 +49,6 @@ end
 
 T, D = createDistanceMatrix(locations)
 
-T
-D
-S = D./T
-S[findall(x->x==NaN, S)] .= 0 
-diag(S) .= 0
-
 
 
 
@@ -64,19 +58,19 @@ length(data["legs"][1]["steps"])
 
 
 
-counter = 1
-for i in data["legs"][1]["steps"]
-    println(counter, " Step")
-    for j in i
-        println("Step attribute")
-        println(j)
-        println()
-    end
-    counter = counter + 1
-end
+# counter = 1
+# for i in data["legs"][1]["steps"]
+#     println(counter, " Step")
+#     for j in i
+#         println("Step attribute")
+#         println(j)
+#         println()
+#     end
+#     counter = counter + 1
+# end
 
 
-JSON.print(data)
+# JSON.print(data)
 
 
 # # URL for Speedlimit 
