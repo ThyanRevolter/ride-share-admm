@@ -11,7 +11,7 @@ function findTimeDistance(origin,destination)
     r = HTTP.request("GET", url)
     body_string = (String(r.body))
     parsed_data = JSON.parse(body_string)
-    return parsed_data["rows"][1]["elements"][1]["duration"]["value"], parsed_data["rows"][1]["elements"][1]["distance"]["value"]
+    return parsed_data["rows"][1]["elements"][1]["distance"]["value"] #parsed_data["rows"][1]["elements"][1]["duration"]["value"], 
 end
 
 findTimeDistance(origin, destination)
