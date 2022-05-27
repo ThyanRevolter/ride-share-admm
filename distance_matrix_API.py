@@ -11,24 +11,6 @@ def get_distance(origin, destination):
     return result["rows"][0]["elements"][0]['duration']['value'], result["rows"][0]["elements"][0]['distance']['value']
 
 
-# location 1 quillen
-p1 = "37.42608322860995,-122.1588178069173"
-
-# location 2 Oak creek
-p2 = "37.43232913771922,-122.18699513497546"
-
-# location 3 HP garage 
-p3 = "37.443228634712966,-122.15464077643587"
-
-# location 4 Goodwill
-p4 = "37.41794560488438,-122.126188456268"
-
-# location of car SLAC
-c = "37.42004765994148,-122.20270570225145"
-
-locations = [c, p1, p2, p3, p4]
-
-
 # pass a string list of n number of location's latitude and longitude 
 def createDistanceMatrix(locations):
     n = len(locations)
@@ -39,7 +21,3 @@ def createDistanceMatrix(locations):
             if i!=j and j != 0:               
                 T[i,j], D[i,j] = get_distance(locations[i], locations[j])
     return T, D
-
-T, D = createDistanceMatrix(locations)
-
-D
