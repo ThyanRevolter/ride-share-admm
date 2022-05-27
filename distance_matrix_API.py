@@ -36,8 +36,10 @@ def createDistanceMatrix(locations):
     T = np.zeros((n,n))
     for i in range(n):
         for j in range(n):
-            if i!=j:               
+            if i!=j and j != 0:               
                 T[i,j], D[i,j] = get_distance(locations[i], locations[j])
     return T, D
 
 T, D = createDistanceMatrix(locations)
+
+D
