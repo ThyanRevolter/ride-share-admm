@@ -15,7 +15,7 @@ def get_energy(new_cust, feasible_locations_list):
     return energy
 
 def get_energy_matrix(T_matrix, D_matrix):
-    a, b, c, k = .004, -0.5, 20, 30 
+    a, b, c, k = 0,0,1,0#.004, -0.5, 20, 30 
     n = D_matrix.shape[0]
     avg_speed = np.divide(D_matrix, T_matrix)
     energy = np.multiply((np.square(avg_speed)*a + avg_speed*b + np.ones(n)*c), D_matrix) + np.ones(n)*k
