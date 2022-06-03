@@ -18,7 +18,7 @@ right_bottom_long = -122.15556246814724
 # Traveling salesman problem.
 np.random.seed(1)
 plt.close()
-n=2
+n=3
 
 # # Get locations.
 # x = np.random.uniform(-1, 1, size=(n, 1))
