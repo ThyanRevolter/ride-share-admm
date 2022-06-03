@@ -1,4 +1,9 @@
-Need to make two changes to packages being used:
+Packages that need to be installed:
+1. [CVXPY](https://github.com/cvxpy/cvxpy)
+2. [NCVX](https://github.com/cvxgrp/ncvx)
+3. [CYSCS](https://github.com/ajfriend/cyscs)
+
+Before running this code,  you need to make two changes to packages being used:
 
 1. In [ncvx/admm_problem.py](https://github.com/cvxgrp/ncvx/blob/master/ncvx/admm_problem.py) : changed Line 471 -
     sltn = noncvx_vars[0].z.value.A.copy()
