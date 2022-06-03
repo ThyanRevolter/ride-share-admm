@@ -56,55 +56,59 @@ class Drop:
     def drop_order(self, solver="nc-admm"):
         freeze_support()
         n = self.D.shape[0]
-        if solver == "nc-admm":
-            P_nca = nc.Tour(n)
-            cost = cp.vec(self.D).T @ cp.vec(P_nca)
-            prob = cp.Problem(cp.Minimize(cost), [])
+        if n == 2:
+            print("route:",[0, 1])
+            return [0, 1]
+        elif n > 2:
+            if solver == "nc-admm":
+                P_nca = nc.Tour(n)
+                cost = cp.vec(self.D).T @ cp.vec(P_nca)
+                prob = cp.Problem(cp.Minimize(cost), [])
 
-            tic = time.perf_counter()
-            val_nca, result = prob.solve(
-                method="NC-ADMM",
-                polish_depth=5,
-                solver=cp.ECOS,
-                show_progress=False,
-                neighbor_func=self.neighbor_func,
-                parallel=False,
-                restarts=4,
-                max_iter=25
-            )
-            toc = time.perf_counter()
-            print("\n### nc-admm ###")
-            print(f"solve time: {toc - tic:.4f} seconds.")
-            print("final value:", val_nca)
-            S_nca = csr_matrix(P_nca.value)
-            E_nca = [[S_nca.indptr[:-1][i] for i in range(n)],[S_nca.indices[i] for i in range(n)]]
-            idx_nca = findTripRoute(E_nca,0,n)
-            print("final result:") 
-            print(S_nca)
-            print("nc-admm route:",idx_nca)
-            return idx_nca
-        
-        if solver == "relax-round-polish":
-            P_rrp = nc.Tour(n)
-            cost = cp.vec(self.D).T @ cp.vec(P_rrp)
-            prob = cp.Problem(cp.Minimize(cost), [])
+                tic = time.perf_counter()
+                val_nca, result = prob.solve(
+                    method="NC-ADMM",
+                    polish_depth=5,
+                    solver=cp.ECOS,
+                    show_progress=False,
+                    neighbor_func=self.neighbor_func,
+                    parallel=False,
+                    restarts=4,
+                    max_iter=25
+                )
+                toc = time.perf_counter()
+                print("\n### nc-admm ###")
+                print(f"solve time: {toc - tic:.4f} seconds.")
+                print("final value:", val_nca)
+                S_nca = csr_matrix(P_nca.value)
+                E_nca = [[S_nca.indptr[:-1][i] for i in range(n)],[S_nca.indices[i] for i in range(n)]]
+                idx_nca = findTripRoute(E_nca,0,n)
+                print("final result:") 
+                print(S_nca)
+                print("nc-admm route:",idx_nca)
+                return idx_nca
+            
+            if solver == "relax-round-polish":
+                P_rrp = nc.Tour(n)
+                cost = cp.vec(self.D).T @ cp.vec(P_rrp)
+                prob = cp.Problem(cp.Minimize(cost), [])
 
-            tic = time.perf_counter()
-            val_rrp, result = prob.solve(
-                method="relax-round-polish",
-                polish_depth=5,
-                solver=cp.ECOS,
-                neighbor_func=self.neighbor_func
-            )
-            toc = time.perf_counter()
-            print("\n### relax-round-polish ###")
-            print(f"solve time: {toc - tic:.4f} seconds.")
-            print("final value:", val_rrp)
-            S_rrp = csr_matrix(P_rrp.value)
-            E_rrp = [[S_rrp.indptr[:-1][i] for i in range(n)],[S_rrp.indices[i] for i in range(n)]]
-            idx_rrp = findTripRoute(E_rrp,0,n)
-            print("final result:")
-            print(S_rrp)
-            print("relax-round-polish route:",idx_rrp)
-            return idx_rrp
+                tic = time.perf_counter()
+                val_rrp, result = prob.solve(
+                    method="relax-round-polish",
+                    polish_depth=5,
+                    solver=cp.ECOS,
+                    neighbor_func=self.neighbor_func
+                )
+                toc = time.perf_counter()
+                print("\n### relax-round-polish ###")
+                print(f"solve time: {toc - tic:.4f} seconds.")
+                print("final value:", val_rrp)
+                S_rrp = csr_matrix(P_rrp.value)
+                E_rrp = [[S_rrp.indptr[:-1][i] for i in range(n)],[S_rrp.indices[i] for i in range(n)]]
+                idx_rrp = findTripRoute(E_rrp,0,n)
+                print("final result:")
+                print(S_rrp)
+                print("relax-round-polish route:",idx_rrp)
+                return idx_rrp            
 
