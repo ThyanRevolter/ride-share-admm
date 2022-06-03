@@ -1,4 +1,4 @@
-# Energy-Efficient Ride-Sharing Using Distributed Convex Optimization
+# An Energy-Efficient Ride-Sharing Algorithm Using Distributed Convex Optimization
 ### Authors: [Shashvat Jayakrishnan](www.github.com/ShashvatJK) and [Adhithyan Sakthivelu](www.github.com/ThyanRevolter)
 #### This is our project as part of the [EE 364B - Convex Optimization II](https://web.stanford.edu/class/ee364b/) class at Stanford University - Spring 2022.
 
