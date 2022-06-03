@@ -21,7 +21,7 @@ def get_location_list(coordindates):
 def generate_cars(N):
     cars_dict = dict()
     for i in range(N):
-        n = random.randint(3,5)
+        n = random.randint(2,5)
         lat_list = np.array([random.uniform(right_bottom_lat, left_top_lat) for i in range(n) ])
         long_list = np.array([random.uniform(left_top_long, right_bottom_long) for i in range(n) ])
         cars_dict["car"+str(i)]= np.vstack((lat_list, long_list))
