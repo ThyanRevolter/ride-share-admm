@@ -18,7 +18,7 @@ right_bottom_long = -122.15556246814724
 # Traveling salesman problem.
 np.random.seed(1)
 plt.close()
-n=5
+n=2
 
 # # Get locations.
 # x = np.random.uniform(-1, 1, size=(n, 1))
@@ -113,7 +113,7 @@ def run():
         neighbor_func=neighbor_func,
         parallel=False,
         restarts=4,
-        max_iter=25,
+        max_iter=25
     )
     toc = time.perf_counter()
     print("\n### nc-admm ###")

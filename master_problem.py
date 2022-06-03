@@ -28,5 +28,5 @@ def solve_master(feasible_locations_list, energy):
     constr = [cp.sum(y) == 1]
     constr += [y[i] >=0 for i in range(n)]
     objective = cp.Problem(cp.Minimize(energy.T@y), constr)
-    objective.solve(solver=cp.GLPK_MI)
+    objective.solve(solver=cp.ECOS_BB)
     return y.value, objective.value
