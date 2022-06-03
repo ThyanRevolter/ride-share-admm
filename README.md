@@ -3,10 +3,10 @@
 #### This is our project as part of the [EE 364B - Convex Optimization II](https://web.stanford.edu/class/ee364b/) class at Stanford University - Spring 2022.
 
 Packages that need to be installed before running our project:
-1. [CVXPY](https://github.com/cvxpy/cvxpy)
-2. [NCVX](https://github.com/cvxgrp/ncvx)
-3. [SCSPROX](https://github.com/bettbra/scsprox)
-4. [CYSCS](https://github.com/ajfriend/cyscs)
+- [CVXPY](https://github.com/cvxpy/cvxpy)
+- [NCVX](https://github.com/cvxgrp/ncvx)
+- [SCSPROX](https://github.com/bettbra/scsprox)
+- [CYSCS](https://github.com/ajfriend/cyscs)
 
 Next, before running this code,  you need to make two changes to package files being used: 
 
@@ -26,3 +26,11 @@ Next, before running this code,  you need to make two changes to package files b
    https://github.com/ajfriend/cyscs/pull/4#issue-1249817619
    
 Finally, let's run our Ride-sharing Algorithm!
+
+Clone this repository and run the `problem_instance_1.py` file. 
+
+- You should see a random passenger location being generated along with an existing cluster of vehicles driving nearby.
+- The algorithm filters our prospective pick-up vehicles by performing local feasibility checks based on a energy-efficency based variation of TSP.
+- Once the feasible vehicles are found, the final pick-up vehicle is decided by solving a master optimization (MILP) which minimizes the energy required to perform the pick-up.
+- While the rider gets matched with the best vehicle, all the vehicles follow the optimal drop-off order obtained from the TSP to drop-off the passengers.
+- The algorithm is centered around energy-efficiency in the pick-up and drop-off phase of ride-sharing trips while incorporating decentralized decision making.
