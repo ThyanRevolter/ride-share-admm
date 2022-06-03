@@ -40,3 +40,6 @@ Clone this repository and run the `problem_instance_1.py` file.
 - Once the feasible vehicles are found, the final pick-up vehicle is decided by solving a master optimization (MILP) which minimizes the energy required to perform the pick-up.
 - While the rider gets matched with the best vehicle, all the vehicles follow the optimal drop-off order obtained from the TSP to drop-off the passengers.
 - The algorithm is centered around energy-efficiency in the pick-up and drop-off phase of ride-sharing trips while incorporating decentralized decision making.
+
+
+![](https://github.com/ThyanRevolter/ee364b_project/blob/master/ee364b-project-flow-chart.jpg)
