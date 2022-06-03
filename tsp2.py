@@ -4,15 +4,21 @@ import numpy as np
 import matplotlib.pyplot as plt
 import time
 from multiprocessing import freeze_support
-import cyscs as scs
 from scipy.sparse import csr_matrix
 import distance_matrix_API
+import random
+
+left_top_lat = 37.470992059291454
+left_top_long = -122.26384676573207
+right_bottom_lat = 37.41590660664082
+right_bottom_long = -122.15556246814724
+
 # This example is described in Section 6.4 of the NCVX paper.
 
 # Traveling salesman problem.
-#np.random.seed(1)
+np.random.seed(1)
 plt.close()
-# n=5
+n=5
 
 # # Get locations.
 # x = np.random.uniform(-1, 1, size=(n, 1))
@@ -24,10 +30,11 @@ plt.close()
 # for i in range(n):
 #     for j in range(n):
 #         D[i, j] = cp.norm(X[:, i] - X[:, j]).value
-
-x = np.array([37.42004765994148, 37.42608322860995, 37.43232913771922, 37.443228634712966, 37.41794560488438])
-y = np.array([-122.20270570225145, -122.1588178069173, -122.18699513497546, -122.15464077643587, -122.126188456268])
-n = len(x)
+x = np.array([random.uniform(right_bottom_lat, left_top_lat) for i in range(n)])
+y = np.array([random.uniform(left_top_long, right_bottom_long) for i in range(n)])
+#x = np.array([37.42004765994148, 37.42608322860995, 37.43232913771922, 37.443228634712966, 37.41794560488438])
+#y = np.array([-122.20270570225145, -122.1588178069173, -122.18699513497546, -122.15464077643587, -122.126188456268])
+#n = len(x)
 X = np.vstack([x.T, y.T])
 locations = [str(X[0][i])+","+str(X[1][i]) for i in range(n)]
 # p1 = "37.42608322860995,-122.1588178069173"
@@ -98,20 +105,20 @@ def run():
     prob = cp.Problem(cp.Minimize(cost), [])
 
     tic = time.perf_counter()
-    val, result = prob.solve(
+    val_nca, result = prob.solve(
         method="NC-ADMM",
         polish_depth=5,
-        solver=cp.SCS,
+        solver=cp.ECOS,
         show_progress=False,
         neighbor_func=neighbor_func,
-        parallel=True,
+        parallel=False,
         restarts=4,
         max_iter=25,
     )
     toc = time.perf_counter()
     print("\n### nc-admm ###")
     print(f"solve time: {toc - tic:.4f} seconds.")
-    print("final value:", val)
+    print("final value:", val_nca)
     S_nca = csr_matrix(P_nca.value)
     E_nca = [[S_nca.indptr[:-1][i] for i in range(n)],[S_nca.indices[i] for i in range(n)]]
     idx_nca = findTripRoute(E_nca,0,n)
@@ -125,16 +132,16 @@ def run():
     prob = cp.Problem(cp.Minimize(cost), [])
 
     tic = time.perf_counter()
-    val, result = prob.solve(
+    val_rrp, result = prob.solve(
         method="relax-round-polish",
         polish_depth=5,
-        solver=cp.SCS,
+        solver=cp.ECOS,
         neighbor_func=neighbor_func
     )
     toc = time.perf_counter()
     print("\n### relax-round-polish ###")
     print(f"solve time: {toc - tic:.4f} seconds.")
-    print("final value:", val)
+    print("final value:", val_rrp)
     S_rrp = csr_matrix(P_rrp.value)
     E_rrp = [[S_rrp.indptr[:-1][i] for i in range(n)],[S_rrp.indices[i] for i in range(n)]]
     idx_rrp = findTripRoute(E_rrp,0,n)
@@ -142,6 +149,23 @@ def run():
     print(S_rrp)
     print("relax-round-polish route:",idx_rrp)
 
+    # # Approximate solution with gurobi
+    # P_gur = nc.Tour(n)
+    # cost = cp.vec(D).T @ cp.vec(P_gur)
+    # prob = cp.Problem(cp.Minimize(cost), [])
+
+    # tic = time.perf_counter()
+    # val, result = prob.solve(solver=cp.GUROBI)
+    # toc = time.perf_counter()
+    # print("\n### gurobi ###")
+    # print(f"solve time: {toc - tic:.4f} seconds.")
+    # print("final value:", val)
+    # S_gur = csr_matrix(P_gur.value)
+    # E_gur = [[S_gur.indptr[:-1][i] for i in range(n)],[S_gur.indices[i] for i in range(n)]]
+    # idx_gur = findTripRoute(E_gur,0,n)
+    # print("final result:") 
+    # print(S_gur)
+    # print("gurobi route:",idx_gur)
     # # Plotting
     # ordered_nca = (X @ P_nca.T).value
     # ordered_rrp = (X @ P_rrp.T).value
@@ -157,7 +181,7 @@ def run():
                 markerfacecolor="black",
                 markeredgecolor="black",
                 linestyle='-.',
-                label="nc-admm"
+                label="nc-admm: cost = "+str(val_nca)
             )
             plt.legend()
         else:
@@ -180,8 +204,8 @@ def run():
                 marker="o",
                 markerfacecolor="black",
                 markeredgecolor="black",
-                linestyle=':',
-                label="relax-round-polish"
+                linestyle='--',
+                label="relax-round-polish: cost = "+str(val_rrp)
             )
             plt.legend()
            
@@ -193,12 +217,13 @@ def run():
                 marker="o",
                 markerfacecolor="black",
                 markeredgecolor="black",
-                linestyle=':'
+                linestyle='--'
             )
-        plt.text(X[0, j],X[1, j]-0.005,"Loc "+str(j),ha='center',va='bottom')
+        #plt.text(X[0, j],X[1, j]-0.005,"Loc "+str(j),ha='center',va='bottom')
         #plt.annotate("DropLoc "+str(j),(X[0, j],X[1, j]),xytext=(0,10),ha='center')
-        
-    plt.text(X[0, n-1],X[1, n-1]-0.005,"Loc "+str(n-1),ha='center',va='bottom')
+
+    plt.text(X[0, 0],X[1, 0]-0.005,"Loc "+str(0),ha='center',va='bottom')    
+    #plt.text(X[0, n-1],X[1, n-1]-0.005,"Loc "+str(n-1),ha='center',va='bottom')
     #plt.annotate("DropLoc "+str(n-1),(X[0, n-1],X[1, n-1]),xytext=(0,10),ha='center')
     plt.show()
 
