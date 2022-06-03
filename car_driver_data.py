@@ -32,6 +32,23 @@ def generate_cars(N):
     return location_list
 
 
+class car:
+    def __init__(self, c_pick, c_drop, c_t, p1_pick, p1_drop, p1_t, p2_pick, p2_drop, p2_t, p3_pick, p3_drop, p3_t):
+        self.c_pick = c_pick
+        self.c_drop = c_drop
+        self.c_t = c_t
+        self.p1_pick = p1_pick
+        self.p1_drop = p1_drop
+        self.p1_t = p1_t
+        self.p2_pick = p2_pick
+        self.p2_drop = p2_drop
+        self.p2_t = p2_t
+        self.p3_pick = p3_pick
+        self.p3_drop = p3_drop
+        self.p3_t = p3_t
+
+
+
 # def main():
 #     left_top_lat = 37.470992059291454
 #     left_top_long = -122.26384676573207
