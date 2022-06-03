@@ -15,12 +15,16 @@ print("Assigned Car location is "+ feasible_cars_list[np.argmax(y)][0])
 
 
 energy_matrix_dict = dict()
+car_location = []
 for i in range(len(feasible_cars_list)):
-     T_car, D_car = createDistanceMatrix(feasible_cars_list[i])
-     energy_matrix_dict["car"+str(i)] = get_energy_matrix(T_car, D_car)
+    car_location.append(feasible_cars_list[i][0])
+    feasible_cars_list[i][0] = new_cust
+    T_car, D_car = createDistanceMatrix(feasible_cars_list[i])
+    energy_matrix_dict[feasible_cars_keys[i]] = get_energy_matrix(T_car, D_car)
 
 
 for energy_matrix in energy_matrix_dict:
     print(energy_matrix)
     print(energy_matrix_dict[energy_matrix].shape)
-    # print(energy_matrix_dict[energy_matrix])
+    print(energy_matrix_dict[energy_matrix])
+
