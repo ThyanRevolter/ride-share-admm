@@ -2,7 +2,7 @@
 ### Authors: [Shashvat Jayakrishnan](www.github.com/ShashvatJK) (MS in EE '23) and [Adhithyan Sakthivelu](www.github.com/ThyanRevolter) (MS in CEE (AE) '23)
 #### This is our project as part of the [EE 364B - Convex Optimization II](https://web.stanford.edu/class/ee364b/) class at Stanford University - Spring 2022.  
 
-#### [Poster](https://office365stanford-my.sharepoint.com/:p:/g/personal/adhiths_stanford_edu/EdDQXM0uWsdCp8Bkde5YV_oBCUFgS_J8s4KaIo_UY5x0cw?e=zpqAZz) | [Paper](https://office365stanford-my.sharepoint.com/:p:/g/personal/adhiths_stanford_edu/EdDQXM0uWsdCp8Bkde5YV_oBCUFgS_J8s4KaIo_UY5x0cw?e=zpqAZz)
+## [Poster](https://office365stanford-my.sharepoint.com/:p:/g/personal/adhiths_stanford_edu/EdDQXM0uWsdCp8Bkde5YV_oBCUFgS_J8s4KaIo_UY5x0cw?e=zpqAZz) | [Paper](https://office365stanford-my.sharepoint.com/:p:/g/personal/adhiths_stanford_edu/EdDQXM0uWsdCp8Bkde5YV_oBCUFgS_J8s4KaIo_UY5x0cw?e=zpqAZz)
 ---
 
 ### Preliminaries
