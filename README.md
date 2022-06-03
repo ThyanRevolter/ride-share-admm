@@ -2,6 +2,8 @@
 ### Authors: [Shashvat Jayakrishnan](www.github.com/ShashvatJK) (MS in EE '23) and [Adhithyan Sakthivelu](www.github.com/ThyanRevolter) (MS in CEE (AE) '23)
 ### This is our project as part of the [EE 364B - Convex Optimization II](https://web.stanford.edu/class/ee364b/) class at Stanford University - Spring 2022.  
 
+---
+
 ### Preliminaries
 
 ---
@@ -29,6 +31,8 @@ Next, before running this code,  you need to make two changes to package files b
    modification so that if we get 'z' it is still processed as 'f'.
    https://github.com/ajfriend/cyscs/pull/4#issue-1249817619  
      
+---
+
 ### Let's Begin!
 
 ---
