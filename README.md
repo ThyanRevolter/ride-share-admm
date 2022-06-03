@@ -1,6 +1,10 @@
 # An Energy-Efficient Ride-Sharing Algorithm Using Distributed Convex Optimization
 ### Authors: [Shashvat Jayakrishnan](www.github.com/ShashvatJK) (MS in EE '23) and [Adhithyan Sakthivelu](www.github.com/ThyanRevolter) (MS in CEE (AE) '23)
-#### This is our project as part of the [EE 364B - Convex Optimization II](https://web.stanford.edu/class/ee364b/) class at Stanford University - Spring 2022.
+### This is our project as part of the [EE 364B - Convex Optimization II](https://web.stanford.edu/class/ee364b/) class at Stanford University - Spring 2022.  
+
+### Preliminaries
+
+---
 
 Packages that need to be installed before running our project:
 - [CVXPY](https://github.com/cvxpy/cvxpy)
@@ -23,9 +27,13 @@ Next, before running this code,  you need to make two changes to package files b
    (primal zero, dual free) even though the new version on the website reflects this 
    as 'z'. Turns out they both are the same cone constraints. So, I made this 
    modification so that if we get 'z' it is still processed as 'f'.
-   https://github.com/ajfriend/cyscs/pull/4#issue-1249817619
-   
-Finally, let's run our Ride-sharing Algorithm!
+   https://github.com/ajfriend/cyscs/pull/4#issue-1249817619  
+     
+### Let's Begin!
+
+---
+
+Finally, we can run our Ride-sharing Algorithm!
 
 Clone this repository and run the `problem_instance_1.py` file. 
 
