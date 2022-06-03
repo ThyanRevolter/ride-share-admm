@@ -4,8 +4,6 @@
 
 ## [Poster](https://office365stanford-my.sharepoint.com/:p:/g/personal/adhiths_stanford_edu/EdDQXM0uWsdCp8Bkde5YV_oBCUFgS_J8s4KaIo_UY5x0cw?e=zpqAZz) | [Paper](https://office365stanford-my.sharepoint.com/:p:/g/personal/adhiths_stanford_edu/EdDQXM0uWsdCp8Bkde5YV_oBCUFgS_J8s4KaIo_UY5x0cw?e=zpqAZz)
 
----
-
 ## Preliminaries
 
 Packages that need to be installed before running our project:
@@ -30,8 +28,6 @@ Next, before running this code,  you need to make two changes to package files b
    as 'z'. Turns out they both are the same cone constraints. So, I made this 
    modification so that if we get 'z' it is still processed as 'f'.
    https://github.com/ajfriend/cyscs/pull/4#issue-1249817619  
-     
----
 
 ## Let's Begin!
 
