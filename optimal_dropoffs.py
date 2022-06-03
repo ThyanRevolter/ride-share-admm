@@ -50,7 +50,7 @@ def neighbor_func(Z, cur_merit):
 
 
 
-def drop_order(D, X, solver="nc-admm"):
+def drop_order(D, solver="nc-admm"):
     freeze_support()
     n = D.shape[0]
     if solver == "nc-admm":
@@ -79,7 +79,7 @@ def drop_order(D, X, solver="nc-admm"):
         print("final result:") 
         print(S_nca)
         print("nc-admm route:",idx_nca)
-        return idx_nca, X[:,idx_nca]
+        return idx_nca
     
     if solver == "relax-round-polish":
         P_rrp = nc.Tour(n)
@@ -103,5 +103,5 @@ def drop_order(D, X, solver="nc-admm"):
         print("final result:")
         print(S_rrp)
         print("relax-round-polish route:",idx_rrp)
-        return idx_rrp, X[:,idx_rrp]
+        return idx_rrp
 
